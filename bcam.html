@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>bcam sample : wakasa.org</title>
+
+<script src="js/gifencoder/b64.js"></script>
+<script src="js/gifencoder/LZWEncoder.js"></script>
+<script src="js/gifencoder/NeuQuant.js"></script>
+<script src="js/gifencoder/GIFEncoder.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="js/bcam.jquery.js"></script>
+
+<script>
+
+function capck(){
+	$('body').jRapidCam({oncomplete:function(e){
+		$('#view').html('<img src="'+e.data+'"/>');
+	}});
+}
+function capckpng(){
+	$('#view').html("カメラ許可待ち");
+	$('body').jRapidCam({videoObj:$("#preview"),type:"pict",oncomplete:function(e){
+		$('#view').html('<img src="'+e.data+'"/>');
+	},onend:function(e){
+		$('#view').html("処理中");
+	},onstart:function(e){
+		$('#view').html("録画中");
+	},onerror:function(e){
+		console.log(e);
+		$('#view').html("エラー");
+	},onwarning:function(e){
+		console.log(e);
+	}});
+}
+
+</script>
+
+</head>
+<body>
+
+
+<a href="#" onclick="capck(); return false;">GIF anime</a>
+<a href="#" onclick="capckpng(); return false;">PNG roll</a>
+
+<div id="view">
+</div>
+
+<div >
+	<video id="preview"/>
+</div>
+
+</body>
+</html>
