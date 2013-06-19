@@ -9,7 +9,7 @@
 	var isComplete=true;
 
 	var cameraWidth,cameraHeight;
-	$.fn.jRapidCam=function(config){
+	$.fn.bcam=function(config){
 		if(!isComplete){
 			if(typeof(options.onerror)=="function"){ options.onerror.call(window,{target:thisObj,code:503,message:"System has been used."}); }
         	return ;
@@ -28,6 +28,7 @@
             layout:"horizontal",
             reverse:true,
             videoObj:null,
+            insertvideo:false,
             oncomplete:null,
             onend:null,
             onstart:null,
@@ -49,9 +50,11 @@
 
 
         if(!videoBox){
-        	if(!options.videoObj)
+        	if(!options.videoObj){
 	        	videoBox=$('<video/>');
-	        else
+	        	if(options.insertvideo)
+	        		$(this).html(videoBox);
+        	}else
 	        	videoBox=$(options.videoObj);
 	        videoBox.attr("autoplay","autoplay");
 	    }
