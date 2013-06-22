@@ -39,7 +39,7 @@
 
 		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-        // chekc
+        // check
         if(!navigator.getUserMedia){
 			if(typeof(options.onerror)=="function"){ options.onerror.call(window,{target:thisObj,code:501,message:"Not Support Browser."}); }
         	return ;
